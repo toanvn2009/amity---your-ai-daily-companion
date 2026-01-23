@@ -1,0 +1,51 @@
+export type Role = "user" | "assistant";
+export type ToneType = "default" | "coach" | "bestie" | "zen" | "sweet";
+export type MoodType =
+  | "happy"
+  | "sad"
+  | "neutral"
+  | "anxious"
+  | "tired"
+  | "excited";
+
+export interface Attachment {
+  type: "image";
+  url: string; // Base64 or URL
+}
+
+export interface Message {
+  id: string;
+  role: Role;
+  content: string;
+  attachments?: Attachment[];
+  timestamp: number;
+  tone?: ToneType;
+}
+
+export interface ChatSession {
+  id: string;
+  title: string;
+  messages: Message[];
+  lastModified: number;
+}
+
+export interface UserProfile {
+  goals: any[];
+  habits: Habit[];
+  moodHistory: MoodRecord[];
+  preferredTone: ToneType;
+  memories: string[]; // Lưu trữ các sự kiện/thông tin quan trọng
+}
+
+export interface Habit {
+  id: string;
+  name: string;
+  streak: number;
+  lastCompletedAt?: number;
+}
+
+export interface MoodRecord {
+  id: string;
+  mood: MoodType;
+  timestamp: number;
+}

@@ -1,0 +1,44 @@
+{
+  "updated_at": "2026-01-23T20:56:00Z",
+  "working_on": {
+    "feature": "Cloud Sync & GitHub Integration",
+    "task": "Pushing code to GitHub and setting up CI/CD",
+    "status": "blocked",
+    "files": [],
+    "blockers": ["Local Git not installed on the system"],
+    "notes": "User needs to install Git to proceed with pushing code to the created repo at https://github.com/toanvn2009/amity-ai"
+  },
+  "pending_tasks": [
+    { "task": "Push code to GitHub once Git is installed", "priority": "high" },
+    {
+      "task": "Add more ambient tracks (Rain, Forest, etc.)",
+      "priority": "low"
+    },
+    {
+      "task": "Implement Voice Output (TTS) using Gemini 2.0+ features",
+      "priority": "medium"
+    }
+  ],
+  "recent_changes": [
+    {
+      "type": "deployment",
+      "description": "Deployed to Vercel production",
+      "url": "https://amityai.vercel.app"
+    },
+    {
+      "type": "ui",
+      "description": "Full mobile optimization for input and chat bubbles"
+    },
+    { "type": "model", "description": "Upgraded to Gemini 2.5 Flash" }
+  ],
+  "decisions_made": [
+    {
+      "decision": "Use Pixabay MP3s for ambient music",
+      "reason": "Better quality and less CPU load than synthesized noise"
+    },
+    {
+      "decision": "Hide QuickActions on mobile",
+      "reason": "Save screen space for conversation content"
+    }
+  ]
+}

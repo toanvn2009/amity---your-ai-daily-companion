@@ -1,0 +1,38 @@
+{
+  "meta": {
+    "schema_version": "1.1.0",
+    "awf_version": "3.3.0",
+    "last_updated": "2026-01-23T20:55:00Z"
+  },
+  "project": {
+    "name": "Amity AI",
+    "type": "Personal AI Companion",
+    "status": "Production-Ready",
+    "url": "https://amityai.vercel.app"
+  },
+  "tech_stack": {
+    "frontend": "React 19, Vite, Tailwind CSS",
+    "ai": "Google Gemini 2.5 Flash",
+    "deployment": "Vercel",
+    "storage": "Browser Local Storage"
+  },
+  "features": [
+    "Long-term Memory (Trí nhớ dài hạn)",
+    "Mood Tracking (Biểu đồ tâm trạng)",
+    "Habit & Goal Management",
+    "Multi-tone Personas (Sweet, Coach, Bestie, Zen)",
+    "Ambient Music Player",
+    "Voice Input",
+    "JSON Data Export/Import"
+  ],
+  "knowledge_items": {
+    "conventions": [
+      "Sử dụng font size 16px cho input trên mobile để tránh iOS auto-zoom.",
+      "Ẩn các thành phần phụ trên mobile để tối ưu không gian chat."
+    ],
+    "gotchas": [
+      "Vercel yêu cầu cấu hình vercel.json cho các dự án SPA để tránh lỗi 404 khi refresh trang.",
+      "Tailwind CDN cần được cấu hình darkMode: 'class' để hoạt động chính xác với nút toggle."
+    ]
+  }
+}
