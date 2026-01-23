@@ -1,12 +1,11 @@
 {
   "updated_at": "2026-01-23T20:56:00Z",
   "working_on": {
-    "feature": "Cloud Sync & GitHub Integration",
-    "task": "Pushing code to GitHub and setting up CI/CD",
-    "status": "blocked",
-    "files": [],
-    "blockers": ["Local Git not installed on the system"],
-    "notes": "User needs to install Git to proceed with pushing code to the created repo at https://github.com/toanvn2009/amity-ai"
+    "feature": "UI Enhancements",
+    "task": "Added Back to Top button for chat container",
+    "status": "completed",
+    "files": ["App.tsx"],
+    "notes": "Nút cuộn lên đầu giúp người dùng dễ dàng quay lại lịch sử trò chuyện khi hội thoại quá dài."
   },
   "pending_tasks": [
     { "task": "Push code to GitHub once Git is installed", "priority": "high" },

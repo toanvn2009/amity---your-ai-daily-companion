@@ -67,6 +67,8 @@ const AppContent: React.FC = () => {
     close: closeDailyCheckin,
   } = useDailyCheckin();
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const chatScrollRef = useRef<HTMLDivElement>(null);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   const activeSession = useMemo(
     () => sessions.find((s) => s.id === activeSessionId) || null,
@@ -308,6 +310,14 @@ const AppContent: React.FC = () => {
     reader.readAsText(file);
     // Reset input
     e.target.value = "";
+  };
+
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    setShowScrollTop(e.currentTarget.scrollTop > 300);
+  };
+
+  const scrollToTop = () => {
+    chatScrollRef.current?.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -732,13 +742,17 @@ const AppContent: React.FC = () => {
           </button>
         </header>
 
-        <div className="flex-1 overflow-y-auto p-4 md:p-8 custom-scrollbar">
-          <div className="max-w-3xl mx-auto space-y-6 pb-4">
+        <div
+          ref={chatScrollRef}
+          onScroll={handleScroll}
+          className="flex-1 overflow-y-auto px-0 py-4 md:p-8 custom-scrollbar"
+        >
+          <div className="w-full max-w-3xl mx-auto space-y-4 md:space-y-6 pb-4">
             {activeSession?.messages.map((msg) => (
               <ChatMessage key={msg.id} message={msg} />
             ))}
             {isLoading && (
-              <div className="flex items-start gap-4 animate-in fade-in duration-500">
+              <div className="flex items-start gap-4 px-4 md:px-0 animate-in fade-in duration-500">
                 <div className="h-9 w-9 bg-indigo-500 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-md">
                   A
                 </div>
@@ -759,6 +773,30 @@ const AppContent: React.FC = () => {
           </div>
           <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
         </div>
+
+        {/* Back to Top Button */}
+        {showScrollTop && (
+          <button
+            onClick={scrollToTop}
+            className="fixed bottom-24 right-4 md:bottom-28 md:right-10 p-2 md:p-3 bg-white/80 backdrop-blur-md border border-indigo-100 rounded-full shadow-lg text-indigo-600 hover:bg-indigo-600 hover:text-white transition-all duration-300 animate-in fade-in zoom-in slide-in-from-bottom-4 z-[50]"
+            title="Cuộn lên đầu"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 md:h-6 md:w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 10l7-7m0 0l7 7m-7-7v18"
+              />
+            </svg>
+          </button>
+        )}
       </main>
     </div>
   );

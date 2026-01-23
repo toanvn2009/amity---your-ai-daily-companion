@@ -23,6 +23,9 @@
 }
 
 @layer utilities {
+  .font-content {
+    font-family: "Merriweather", serif;
+  }
   .glass-panel {
     background: var(--glass-bg);
     backdrop-filter: blur(20px);

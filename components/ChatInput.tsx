@@ -89,17 +89,17 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, isLoading }) => {
   }, [input]);
 
   return (
-    <div className="p-1.5 md:p-6 pb-2 w-full">
+    <div className="w-full px-0 py-2 md:p-6 pb-2">
       <div className="max-w-4xl mx-auto">
-        {/* Attachment Preview */}
+        {/* Attachment Preview - Duy trì padding nhẹ để không dính sát lề */}
         {attachments.length > 0 && (
-          <div className="flex gap-2 mb-2 overflow-x-auto pb-1">
+          <div className="flex gap-2 mb-2 overflow-x-auto pb-1 px-3 md:px-0">
             {attachments.map((att, idx) => (
-              <div key={idx} className="relative group">
+              <div key={idx} className="relative group flex-shrink-0">
                 <img
                   src={att.url}
                   alt="attachment"
-                  className="h-12 w-12 md:h-16 md:w-16 object-cover rounded-xl border border-white/50 shadow-sm"
+                  className="h-14 w-14 md:h-16 md:w-16 object-cover rounded-xl border border-white/50 shadow-sm"
                 />
                 <button
                   type="button"
@@ -126,7 +126,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, isLoading }) => {
 
         <form
           onSubmit={handleSubmit}
-          className="relative group flex gap-1.5 md:gap-2 items-end px-1"
+          className="flex items-end gap-2 md:gap-3 px-2 md:px-0"
         >
           <input
             type="file"
@@ -136,15 +136,15 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, isLoading }) => {
             className="hidden"
           />
 
+          {/* Icon đính kèm trên mobile */}
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
-            className="hidden md:flex p-2 md:p-3 rounded-xl md:rounded-2xl bg-white/80 text-slate-500 hover:bg-white hover:text-indigo-600 hover:shadow-md border border-white/50 transition-all duration-300 flex-shrink-0"
-            title="Gửi ảnh"
+            className="md:hidden p-2.5 rounded-full bg-white/80 text-slate-500 border border-white/50 flex-shrink-0 mb-0.5"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 md:h-6 md:w-6"
+              className="h-6 w-6"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -153,23 +153,23 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, isLoading }) => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                d="M12 4v16m8-8H4"
               />
             </svg>
           </button>
 
-          {isSupported && (
-            <button
-              type="button"
-              onClick={toggleVoice}
-              className={`p-1.5 md:p-3 rounded-xl md:rounded-2xl transition-all duration-300 flex-shrink-0 ${
-                isListening
-                  ? "bg-rose-500 text-white shadow-lg shadow-rose-200 animate-pulse scale-105"
-                  : "bg-white/80 text-slate-500 hover:bg-white hover:text-indigo-600 hover:shadow-md border border-white/50"
-              }`}
-              title="Nhấn để nói"
-            >
-              {isListening ? (
+          {/* Cụm input chính */}
+          <div className="flex-1 flex items-end gap-2 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md rounded-[24px] border border-white/50 dark:border-slate-700 p-1 md:p-1.5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-100 transition-all">
+            {isSupported && (
+              <button
+                type="button"
+                onClick={toggleVoice}
+                className={`p-2 md:p-2.5 rounded-full transition-all duration-300 flex-shrink-0 ${
+                  isListening
+                    ? "bg-rose-500 text-white shadow-lg animate-pulse"
+                    : "text-slate-400 hover:text-indigo-500 hover:bg-white"
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5 md:h-6 md:w-6"
@@ -184,26 +184,9 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, isLoading }) => {
                     d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
                   />
                 </svg>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 md:h-6 md:w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
-                  />
-                </svg>
-              )}
-            </button>
-          )}
+              </button>
+            )}
 
-          <div className="relative flex-1">
             <textarea
               ref={textareaRef}
               rows={1}
@@ -211,36 +194,28 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, isLoading }) => {
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder={isListening ? "Đang lắng nghe..." : "Nhắn tin..."}
-              className={`w-full resize-none rounded-xl md:rounded-2xl glass-input py-2 md:py-4 pl-3.5 md:pl-5 pr-10 md:pr-14 
-                focus:outline-none focus:ring-4 focus:ring-indigo-100/50 
-                text-slate-700 max-h-32 md:max-h-40 custom-scrollbar text-base placeholder:text-slate-400
-                ${isListening ? "ring-2 ring-rose-200 placeholder:text-rose-400" : ""}
-              `}
+              className="flex-1 bg-transparent border-none focus:outline-none focus:ring-0 py-2.5 md:py-3 px-1 text-slate-700 dark:text-slate-200 text-base max-h-32 md:max-h-40 resize-none custom-scrollbar font-content"
               disabled={isLoading}
             />
+
             <button
               type="submit"
               disabled={
                 (!input.trim() && attachments.length === 0) || isLoading
               }
-              className={`absolute right-1 bottom-1 md:right-2 md:bottom-2 p-1 md:p-2 rounded-lg md:rounded-xl transition-all duration-300 ${
+              className={`p-2 md:p-2.5 rounded-full transition-all duration-300 flex-shrink-0 ${
                 (input.trim() || attachments.length > 0) && !isLoading
-                  ? "bg-gradient-to-r from-indigo-500 to-violet-500 text-white shadow-md shadow-indigo-100 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:scale-95"
-                  : "bg-slate-100/50 text-slate-300"
+                  ? "bg-indigo-600 text-white shadow-md hover:bg-indigo-700 scale-100 active:scale-90"
+                  : "text-slate-300"
               }`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4 md:h-5 md:w-5"
+                className="h-5 w-5 md:h-6 md:w-6 transform rotate-90"
                 viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                fill="currentColor"
               >
-                <line x1="22" y1="2" x2="11" y2="13"></line>
-                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                <path d="M3.4 20.4l17.45-7.48a1 1 0 000-1.84L3.4 3.6a.993.993 0 00-1.39.91L2 9.12c0 .5.37.93.87.99L17 12 2.87 12.88c-.5.07-.87.5-.87 1l.01 4.61c0 .71.73 1.2 1.39.91z" />
               </svg>
             </button>
           </div>
