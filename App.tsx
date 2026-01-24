@@ -69,6 +69,9 @@ const AppContent: React.FC = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const chatScrollRef = useRef<HTMLDivElement>(null);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [memoryNotification, setMemoryNotification] = useState<string | null>(
+    null,
+  );
 
   const activeSession = useMemo(
     () => sessions.find((s) => s.id === activeSessionId) || null,
@@ -176,8 +179,10 @@ const AppContent: React.FC = () => {
       if (extractedMemory && !profile.memories.includes(extractedMemory)) {
         setProfile((prev) => ({
           ...prev,
-          memories: [extractedMemory, ...prev.memories].slice(0, 200), // Giới hạn 200 trí nhớ
+          memories: [extractedMemory, ...prev.memories].slice(0, 500), // Giới hạn 500 trí nhớ
         }));
+        setMemoryNotification(extractedMemory);
+        setTimeout(() => setMemoryNotification(null), 4000); // Ẩn sau 4s
       }
 
       const assistantMsg: Message = {
@@ -718,9 +723,15 @@ const AppContent: React.FC = () => {
           className="flex-1 overflow-y-auto px-0 py-4 md:p-8 custom-scrollbar"
         >
           <div className="w-full max-w-3xl mx-auto space-y-4 md:space-y-6 pb-4">
-            {activeSession?.messages.map((msg) => (
-              <ChatMessage key={msg.id} message={msg} />
-            ))}
+            {activeSession ? (
+              activeSession.messages.map((msg) => (
+                <ChatMessage key={msg.id} message={msg} />
+              ))
+            ) : (
+              <div className="flex flex-col items-center justify-center h-full text-slate-400 mt-20">
+                <p>Chưa có cuộc trò chuyện nào được chọn...</p>
+              </div>
+            )}
             {isLoading && (
               <div className="flex items-start gap-4 px-4 md:px-0 animate-in fade-in duration-500">
                 <div className="h-9 w-9 bg-indigo-500 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-md">
@@ -766,6 +777,38 @@ const AppContent: React.FC = () => {
               />
             </svg>
           </button>
+        )}
+
+        {/* Memory Notification Toast */}
+        {memoryNotification && (
+          <div className="fixed top-20 right-4 left-4 md:left-auto md:right-8 z-[60] bg-white/90 backdrop-blur-md border border-indigo-100 shadow-xl rounded-2xl p-4 animate-in slide-in-from-top-4 fade-in duration-300 max-w-sm">
+            <div className="flex items-start gap-3">
+              <div className="bg-indigo-100 p-2 rounded-full text-indigo-600 shrink-0">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <h4 className="text-sm font-bold text-slate-800">
+                  Đã ghi nhớ điều mới! ✨
+                </h4>
+                <p className="text-xs text-slate-600 mt-1 line-clamp-2">
+                  "{memoryNotification}"
+                </p>
+              </div>
+            </div>
+          </div>
         )}
       </main>
     </div>
