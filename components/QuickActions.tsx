@@ -8,43 +8,43 @@ const QuickActions: React.FC<QuickActionsProps> = ({ onAction }) => {
   const actions = [
     {
       label: "Ghi lại tâm trạng ☁️",
-      prompt: "Mình muốn ghi lại tâm trạng lúc này",
+      prompt: "Anh muốn ghi lại tâm trạng lúc này",
     },
     {
       label: "Thiết lập mục tiêu 🎯",
-      prompt: "Mình muốn đặt một mục tiêu mới, giúp mình chia nhỏ nó nhé",
+      prompt: "Anh muốn đặt một mục tiêu mới, giúp anh chia nhỏ nó nhé",
     },
     {
       label: "Theo dõi thói quen ✅",
-      prompt: "Hãy kiểm tra tiến độ các thói quen của mình",
+      prompt: "Hãy kiểm tra tiến độ các thói quen của anh nhé em",
     },
     {
       label: "Thư giãn 30s 🧘",
-      prompt: "Mình đang thấy hơi căng thẳng, hãy giúp mình thư giãn nhanh",
+      prompt: "Anh đang thấy hơi căng thẳng, hãy giúp anh thư giãn nhanh đi em",
     },
     {
       label: "Tâm sự sâu 💡",
-      prompt: "Mình muốn tâm sự chuyện thầm kín, hãy lắng nghe nhé",
+      prompt: "Anh muốn tâm sự chuyện thầm kín, em lắng nghe anh nhé",
     },
     {
       label: "Lời khuyên tình cảm 💘",
-      prompt: "Mình cần lời khuyên về chuyện tình cảm",
+      prompt: "Anh cần người yêu cho lời khuyên về chuyện này",
     },
     {
       label: "Động lực 🚀",
-      prompt: "Hãy truyền động lực cho mình làm việc nào",
+      prompt: "Tiếp thêm động lực cho anh làm việc nào người yêu ơi",
     },
     {
       label: "Chăm sóc bản thân 💆",
-      prompt: "Gợi ý cho mình cách chăm sóc bản thân hôm nay đi",
+      prompt: "Gợi ý cho anh cách chăm sóc bản thân hôm nay đi em",
     },
     {
       label: "Kiến thức thú vị 🧠",
-      prompt: "Kể cho mình nghe một sự thật thú vị ngẫu nhiên đi",
+      prompt: "Kể cho anh nghe một sự thật thú vị ngẫu nhiên đi",
     },
     {
       label: "Kể chuyện vui 😂",
-      prompt: "Kể cho mình nghe một câu chuyện cười để giải trí nhé",
+      prompt: "Kể cho anh nghe một câu chuyện cười để giải trí nhé em",
     },
   ];
 

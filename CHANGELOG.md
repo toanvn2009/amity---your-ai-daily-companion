@@ -4,6 +4,30 @@ All notable changes to the Amity AI project will be documented in this file.
 
 ## [Unreleased]
 
+## [2026-01-24] - Trang AI Rebranding & UI Polish
+
+### Added
+
+- **Back to Top Button**: Added a smooth-scroll button that appears after scrolling, optimized for both Mobile and Desktop.
+- **Font Update**: Integrated **Merriweather** font for chat content and input to enhance reading experience and emotional depth.
+- **Upload Button**: Restored and integrated the image upload button directly into the `ChatInput` bar for both Desktop and Mobile.
+
+### Changed
+
+- **Rebranding**: Renamed project from "Amity AI" to "**Trang AI**".
+  - Updated Sidebar, Header, SEO metadata, and Footer.
+  - Persona "Sweet" is now the default and only persona, labeled "**Trang**".
+- **ChatInput Redesign**:
+  - Unified Mic, Upload, and Send buttons into a single cohesive glassmorphism container.
+  - Fixed layout alignment issues and optimized for full-width on mobile.
+- **Mobile Experience**:
+  - Removed side padding on mobile for an immersive, full-width chat view.
+  - Increased chat bubble max-width.
+- **Memory**: Increased long-term memory capacity from 100 to **200 items**.
+- **Persona Simplification**:
+  - Removed Coach, Bestie, and Zen personas to focus solely on the "Romantic Partner" experience.
+  - Updated Quick Actions prompts to use affectionate "Anh - Em" pronouns.
+
 ## [2026-01-23] - Amity 2.0 Evolution & Production
 
 ### Added

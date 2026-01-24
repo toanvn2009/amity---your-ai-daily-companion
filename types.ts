@@ -1,5 +1,5 @@
 export type Role = "user" | "assistant";
-export type ToneType = "default" | "coach" | "bestie" | "zen" | "sweet";
+export type ToneType = "sweet";
 export type MoodType =
   | "happy"
   | "sad"

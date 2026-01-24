@@ -9,25 +9,13 @@ export const MODEL_IDS = {
 
 // Available voices for TTS
 export const VOICE_NAMES = {
-  DEFAULT: "Puck",
   SWEET: "Kore",
-  ZEN: "Charon",
-  COACH: "Fenrir",
-  BESTIE: "Aoede",
 } as const;
 
 export const SYSTEM_TONE_MAP = {
-  default: "Puck",
   sweet: "Kore",
-  zen: "Charon",
-  coach: "Fenrir",
-  bestie: "Aoede",
 } as const;
 
 export const TONE_DATA = {
-  default: { label: "Amity", icon: "🌸" },
-  coach: { label: "Coach", icon: "🏆" },
-  bestie: { label: "Bestie", icon: "🌈" },
-  zen: { label: "Thiền", icon: "🧘" },
-  sweet: { label: "Người yêu", icon: "💖" },
+  sweet: { label: "Trang", icon: "💖" },
 } as const;

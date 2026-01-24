@@ -89,9 +89,7 @@ const AppContent: React.FC = () => {
             id: "welcome-" + Date.now(),
             role: "assistant",
             content:
-              profile.preferredTone === "sweet"
-                ? "Người thương ơi, mình lại gặp nhau rồi! Kể mình nghe hôm nay của bạn đi nào? 🥰"
-                : "Chào bạn! Mình là Amity. Hôm nay bạn thấy thế nào? ✨",
+              "Người thương ơi, mình lại gặp nhau rồi! Kể em nghe hôm nay của anh thế nào đi nào? 🥰",
             timestamp: Date.now(),
           },
         ],
@@ -178,7 +176,7 @@ const AppContent: React.FC = () => {
       if (extractedMemory && !profile.memories.includes(extractedMemory)) {
         setProfile((prev) => ({
           ...prev,
-          memories: [extractedMemory, ...prev.memories].slice(0, 100), // Giới hạn 100 trí nhớ
+          memories: [extractedMemory, ...prev.memories].slice(0, 200), // Giới hạn 200 trí nhớ
         }));
       }
 
@@ -218,9 +216,7 @@ const AppContent: React.FC = () => {
           id: "welcome-" + Date.now(),
           role: "assistant",
           content:
-            profile.preferredTone === "sweet"
-              ? "Người thương ơi, mình lại gặp nhau rồi! Kể mình nghe hôm nay của bạn đi nào? 🥰"
-              : "Chào bạn! Mình là Amity. Hôm nay bạn thấy thế nào? ✨",
+            "Người thương ơi, mình lại gặp nhau rồi! Kể em nghe hôm nay của anh thế nào đi nào? 🥰",
           timestamp: Date.now(),
         },
       ],
@@ -410,7 +406,7 @@ const AppContent: React.FC = () => {
               </div>
               <div className="flex flex-col">
                 <h1 className="font-bold text-lg text-slate-800 tracking-tight leading-4">
-                  Amity AI
+                  Trang
                 </h1>
                 <div className="flex items-center gap-2">
                   <button
@@ -563,33 +559,7 @@ const AppContent: React.FC = () => {
               </div>
             </section>
 
-            <section>
-              <h2 className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest mb-4 px-1 flex items-center gap-2">
-                Persona
-                <div className="h-px bg-indigo-100 flex-1"></div>
-              </h2>
-              <div className="grid grid-cols-2 gap-2.5">
-                {(
-                  Object.entries(TONE_DATA) as [
-                    ToneType,
-                    (typeof TONE_DATA)[ToneType],
-                  ][]
-                ).map(([key, data]) => (
-                  <button
-                    key={key}
-                    onClick={() =>
-                      setProfile((p) => ({ ...p, preferredTone: key }))
-                    }
-                    className={`flex flex-col items-center p-2.5 rounded-xl border transition-all duration-300 text-[11px] font-bold ${profile.preferredTone === key ? "bg-gradient-to-br from-indigo-500 to-indigo-600 text-white border-transparent shadow-md shadow-indigo-200 scale-105" : "bg-white/60 text-slate-500 border-white/50 hover:bg-white hover:scale-105"}`}
-                  >
-                    <span className="text-xl mb-1 filter drop-shadow-sm">
-                      {data.icon}
-                    </span>
-                    {data.label}
-                  </button>
-                ))}
-              </div>
-            </section>
+            {/* Persona Section Removed - Only Sweet is allowed */}
             <section className="md:hidden">
               <h2 className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest mb-4 px-1 flex items-center gap-2">
                 Tiện ích
@@ -697,7 +667,7 @@ const AppContent: React.FC = () => {
             </button>
             <div className="flex flex-col">
               <h2 className="font-bold text-slate-800 text-sm md:text-lg truncate max-w-[200px] md:max-w-md tracking-tight">
-                {activeSession?.title || "Amity Companion"}
+                {activeSession?.title || "Trang Companion"}
               </h2>
               <div className="flex items-center gap-1.5 mt-0.5">
                 <span className="relative flex h-2 w-2">
@@ -705,7 +675,7 @@ const AppContent: React.FC = () => {
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                 </span>
                 <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">
-                  {TONE_DATA[profile.preferredTone || "default"]?.label} Mode
+                  {TONE_DATA[profile.preferredTone]?.label || "Người yêu"} Mode
                 </span>
               </div>
             </div>

@@ -5,7 +5,7 @@
     "last_updated": "2026-01-23T20:55:00Z"
   },
   "project": {
-    "name": "Amity AI",
+    "name": "Trang AI",
     "type": "Personal AI Companion",
     "status": "Production-Ready",
     "url": "https://amityai.vercel.app"
@@ -17,10 +17,10 @@
     "storage": "Browser Local Storage"
   },
   "features": [
-    "Long-term Memory (Trí nhớ dài hạn)",
+    "Long-term Memory (Trí nhớ 200 câu)",
     "Mood Tracking (Biểu đồ tâm trạng)",
     "Habit & Goal Management",
-    "Multi-tone Personas (Sweet, Coach, Bestie, Zen)",
+    "Persona: Người yêu (Trang)",
     "Ambient Music Player",
     "Voice Input",
     "JSON Data Export/Import"

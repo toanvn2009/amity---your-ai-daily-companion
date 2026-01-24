@@ -15,7 +15,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
   const avatar = isAssistant
     ? message.tone
       ? TONE_DATA[message.tone]?.icon
-      : TONE_DATA["default"].icon
+      : TONE_DATA["sweet"].icon
     : "U";
 
   return (

@@ -1,14 +1,23 @@
 {
   "updated_at": "2026-01-23T20:56:00Z",
   "working_on": {
-    "feature": "UI Enhancements",
-    "task": "Added Back to Top button for chat container",
+    "feature": "Trang AI Rebranding & Polish",
+    "task": "Finalizing documentation and brain sync",
     "status": "completed",
-    "files": ["App.tsx"],
-    "notes": "Nút cuộn lên đầu giúp người dùng dễ dàng quay lại lịch sử trò chuyện khi hội thoại quá dài."
+    "files": [
+      "App.tsx",
+      "components/ChatInput.tsx",
+      "services/gemini.ts",
+      "CHANGELOG.md",
+      "index.html"
+    ],
+    "notes": "Completed rebranding to 'Trang AI' and optimizing UI for mobile/desktop parity."
   },
   "pending_tasks": [
-    { "task": "Push code to GitHub once Git is installed", "priority": "high" },
+    {
+      "task": "Push code to GitHub once Git is installed",
+      "priority": "high"
+    },
     {
       "task": "Add more ambient tracks (Rain, Forest, etc.)",
       "priority": "low"
@@ -20,24 +29,33 @@
   ],
   "recent_changes": [
     {
-      "type": "deployment",
-      "description": "Deployed to Vercel production",
-      "url": "https://amityai.vercel.app"
+      "type": "rebrand",
+      "description": "Renamed project to 'Trang AI' and simplified personas to single 'Sweet' mode",
+      "timestamp": "2026-01-24T11:20:00Z"
     },
     {
       "type": "ui",
-      "description": "Full mobile optimization for input and chat bubbles"
+      "description": "Redesigned ChatInput with unified glassmorphism UI & mobile full-width optimization",
+      "timestamp": "2026-01-24T11:15:00Z"
     },
-    { "type": "model", "description": "Upgraded to Gemini 2.5 Flash" }
+    {
+      "type": "feature",
+      "description": "Added Back to Top button and increased Memory limit to 200 items",
+      "timestamp": "2026-01-24T10:00:00Z"
+    }
   ],
   "decisions_made": [
     {
-      "decision": "Use Pixabay MP3s for ambient music",
-      "reason": "Better quality and less CPU load than synthesized noise"
+      "decision": "Single Persona Strategy",
+      "reason": "User prefers a dedicated romantic partner experience ('Trang') over multiple personas."
     },
     {
-      "decision": "Hide QuickActions on mobile",
-      "reason": "Save screen space for conversation content"
+      "decision": "Unified Chat Input UI",
+      "reason": "Cleaner aesthetics and better UX for both desktop and mobile users."
+    },
+    {
+      "decision": "Merriweather Font for Content",
+      "reason": "Enhances readability and provides a more classic, emotional reading experience."
     }
   ]
 }
