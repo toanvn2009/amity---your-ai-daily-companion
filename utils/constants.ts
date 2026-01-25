@@ -3,8 +3,8 @@ export const TOP_P_DEFAULT = 0.95;
 export const TEMPERATURE_DEFAULT = 0.7;
 
 export const MODEL_IDS = {
-  TEXT: "gemini-2.5-flash",
-  TTS: "gemini-2.5-flash",
+  TEXT: "gemini-2.0-flash-exp",
+  TTS: "gemini-2.0-flash-exp",
 };
 
 // Available voices for TTS

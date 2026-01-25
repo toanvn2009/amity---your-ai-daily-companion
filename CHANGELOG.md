@@ -4,6 +4,16 @@ All notable changes to the Amity AI project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- **API Key Security**: Created `.env` system to secure the Gemini API Key.
+- **Improved Code Structure**: Refactored `App.tsx` by extracting `Sidebar`, `Header`, and `ChatContainer` into standalone components.
+
+### Fixed
+
+- **Security Vulnerability**: Fixed `.gitignore` to prevent leaking API Keys in environment files.
+- **Code Maintenance**: Reduced `App.tsx` complexity by ~50% (from 800+ lines to ~400 lines).
+
 ## [2026-01-24] - Trang AI Rebranding & UI Polish
 
 ### Added
