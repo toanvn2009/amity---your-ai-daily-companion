@@ -34,7 +34,18 @@ export interface UserProfile {
   habits: Habit[];
   moodHistory: MoodRecord[];
   preferredTone: ToneType;
-  memories: string[]; // Lưu trữ các sự kiện/thông tin quan trọng
+  memories: string[]; // Legacy, for backward compatibility
+  episodicMemories?: MemoryItem[]; // Short-term, specific events
+  semanticMemories?: MemoryItem[]; // Long-term, core facts
+  emotionalContext?: string; // Current emotional state/vibe
+}
+
+export interface MemoryItem {
+  id: string;
+  content: string;
+  timestamp: number;
+  importance: number; // 1-10
+  type: "episodic" | "semantic";
 }
 
 export interface Habit {

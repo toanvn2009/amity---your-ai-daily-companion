@@ -156,18 +156,32 @@ const AppContent: React.FC = () => {
       const currentMessages = activeSession
         ? [...activeSession.messages, userMsg]
         : [userMsg];
-      const { text, extractedMemory } = await getGeminiResponse(
-        currentMessages,
-        profile,
-      );
+      const { text, extractedMemory, emotionalUpdate } =
+        await getGeminiResponse(currentMessages, profile);
 
-      if (extractedMemory && !profile.memories.includes(extractedMemory)) {
-        setProfile((prev) => ({
-          ...prev,
-          memories: [extractedMemory, ...prev.memories].slice(0, 500),
-        }));
-        setMemoryNotification(extractedMemory);
+      if (extractedMemory) {
+        setProfile((prev) => {
+          const episodic = prev.episodicMemories || [];
+          const semantic = prev.semanticMemories || [];
+
+          if (extractedMemory.type === "semantic") {
+            return {
+              ...prev,
+              semanticMemories: [extractedMemory, ...semantic].slice(0, 100),
+              emotionalContext: emotionalUpdate || prev.emotionalContext,
+            };
+          } else {
+            return {
+              ...prev,
+              episodicMemories: [extractedMemory, ...episodic].slice(0, 100),
+              emotionalContext: emotionalUpdate || prev.emotionalContext,
+            };
+          }
+        });
+        setMemoryNotification(extractedMemory.content);
         setTimeout(() => setMemoryNotification(null), 4000);
+      } else if (emotionalUpdate) {
+        setProfile((prev) => ({ ...prev, emotionalContext: emotionalUpdate }));
       }
 
       const assistantMsg: Message = {

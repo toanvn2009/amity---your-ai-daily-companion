@@ -33,6 +33,11 @@
     "gotchas": [
       "Vercel yêu cầu cấu hình vercel.json cho các dự án SPA để tránh lỗi 404 khi refresh trang.",
       "Tailwind CDN cần được cấu hình darkMode: 'class' để hoạt động chính xác với nút toggle."
+    ],
+    "active_skills": [
+      "Agent Memory Systems (.brain/skills/agent-memory-systems/SKILL.md)",
+      "UI/UX Pro Max (.brain/skills/ui-ux-pro-max/SKILL.md)",
+      "Persona Writing & Copywriting (.brain/skills/writing-skills/SKILL.md)"
     ]
   }
 }

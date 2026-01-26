@@ -1,7 +1,9 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { motion } from "framer-motion";
 import { Message } from "../types";
+
 import { TONE_DATA } from "../utils/constants";
 
 interface ChatMessageProps {
@@ -19,8 +21,13 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
     : "U";
 
   return (
-    <div
-      className={`flex w-full mb-4 md:mb-8 px-2 md:px-0 animate-in fade-in slide-in-from-bottom-2 duration-300 ${isAssistant ? "justify-start" : "justify-end"}`}
+    <motion.div
+      initial={{ opacity: 0, y: 15, scale: 0.98 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+      className={`flex w-full mb-4 md:mb-8 px-2 md:px-0 ${
+        isAssistant ? "justify-start" : "justify-end"
+      }`}
     >
       <div
         className={`flex w-full md:max-w-[80%] ${isAssistant ? "flex-row" : "flex-row-reverse"}`}
@@ -89,7 +96,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

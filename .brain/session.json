@@ -1,33 +1,47 @@
 {
   "updated_at": "2026-01-23T20:56:00Z",
   "working_on": {
-    "feature": "Trang AI Rebranding & Polish",
-    "task": "Finalizing documentation and brain sync",
-    "status": "completed",
+    "feature": "Skill Integration & Memory Upgrade",
+    "task": "Mounting relevant skills from awesome-skills pool",
+    "status": "in-progress",
     "files": [
-      "App.tsx",
-      "components/ChatInput.tsx",
-      "services/gemini.ts",
-      "CHANGELOG.md",
-      "index.html"
+      ".brain/skills/agent-memory-systems/",
+      ".brain/skills/ui-ux-pro-max/",
+      ".brain/skills/writing-skills/",
+      ".brain/brain.json"
     ],
-    "notes": "Completed rebranding to 'Trang AI' and optimizing UI for mobile/desktop parity."
+    "notes": "Removed Voice AI Development skill as per user request (not effective). Continuing with Memory, UI, and Persona enhancements."
   },
   "pending_tasks": [
     {
+      "task": "Upgrade memory extraction using Agent Memory skill",
+      "priority": "medium"
+    },
+    {
+      "task": "Refine Persona voice using Writing Skills & Copywriting",
+      "priority": "medium"
+    },
+    {
       "task": "Push code to GitHub once Git is installed",
       "priority": "high"
-    },
-    {
-      "task": "Add more ambient tracks (Rain, Forest, etc.)",
-      "priority": "low"
-    },
-    {
-      "task": "Implement Voice Output (TTS) using Gemini 2.0+ features",
-      "priority": "medium"
     }
   ],
   "recent_changes": [
+    {
+      "type": "persona_update",
+      "description": "Adjusted 'Sweet' persona to be more generous with words (3-4 paragraphs), expressive, and immersive.",
+      "timestamp": "2026-01-26T16:10:00Z"
+    },
+    {
+      "type": "feature_removal",
+      "description": "Removed Voice AI Development (TTS) feature due to ineffectiveness.",
+      "timestamp": "2026-01-26T16:00:00Z"
+    },
+    {
+      "type": "skill_integration",
+      "description": "Mounted 3 core skills: Memory Systems, UI/UX Pro Max, and Persona Writing to .brain/skills/",
+      "timestamp": "2026-01-26T15:42:00Z"
+    },
     {
       "type": "rebrand",
       "description": "Renamed project to 'Trang AI' and simplified personas to single 'Sweet' mode",

@@ -14,6 +14,23 @@ All notable changes to the Amity AI project will be documented in this file.
 - **Security Vulnerability**: Fixed `.gitignore` to prevent leaking API Keys in environment files.
 - **Code Maintenance**: Reduced `App.tsx` complexity by ~50% (from 800+ lines to ~400 lines).
 
+## [2026-01-26] - Trang AI "Full Power" Upgrade
+
+### Added
+
+- **Tiered Memory System**: Implemented `Episodic` (short-term) and `Semantic` (long-term) memory, allowing Trang to distinguish between core facts and recent events.
+- **Emotional Context**: Added `emotionalContext` tracking to help Trang understand and adapt to the conversation's vibe.
+- **Premium UI/UX**: Integrated `framer-motion` for smooth message animations (slide-up & fade-in) and enhanced glassmorphism effects (`premium-glass`).
+
+### Changed
+
+- **Persona Depth**: Updated "Sweet" persona to clearly prioritize "Show, Don't Just Tell", encouraging longer (3-4 paragraphs), more immersive, and emotionally rich responses.
+- **Response Length**: Removed brevity constraints, now encouraging generosity with words for a deeper connection.
+
+### Removed
+
+- **Voice AI (TTS)**: Removed auto-speaking feature and barge-in logic as per user request (found ineffective).
+
 ## [2026-01-24] - Trang AI Rebranding & UI Polish
 
 ### Added
