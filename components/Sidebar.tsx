@@ -11,7 +11,7 @@ interface SidebarProps {
   onDeleteSession: (id: string, e: React.MouseEvent) => void;
   onNewChat: () => void;
   profile: UserProfile;
-  onRemoveMemory: (index: number) => void;
+  onRemoveMemory: (id: string) => void;
   onOpenMemoryManager: () => void;
   onOpenMoodChart: () => void;
   onOpenWeeklyReport: () => void;
@@ -177,42 +177,45 @@ const Sidebar: React.FC<SidebarProps> = ({
                 </button>
               </h2>
               <div className="bg-white/40 rounded-2xl p-3 space-y-2.5 border border-white/60 min-h-[60px] max-h-[250px] overflow-y-auto custom-scrollbar shadow-sm backdrop-blur-sm">
-                {profile.memories && profile.memories.length > 0 ? (
-                  profile.memories.map((mem, idx) => (
-                    <div
-                      key={idx}
-                      className="group relative flex items-start gap-2.5 p-1"
-                    >
-                      <div className="h-1.5 w-1.5 bg-indigo-400 rounded-full mt-1.5 flex-shrink-0 shadow-sm" />
-                      <p className="text-[11px] text-slate-600 leading-snug flex-1 opacity-90">
-                        {mem}
-                      </p>
-                      <button
-                        onClick={() => onRemoveMemory(idx)}
-                        className="opacity-0 group-hover:opacity-100 absolute -right-2 -top-2 bg-white border border-slate-100 rounded-full p-0.5 text-slate-300 hover:text-rose-500 shadow-sm transition-opacity"
+                {(() => {
+                  const allMemories = [...(profile.semanticMemories || []), ...(profile.episodicMemories || [])].sort((a,b) => b.timestamp - a.timestamp);
+                  return allMemories.length > 0 ? (
+                    allMemories.map((mem) => (
+                      <div
+                        key={mem.id}
+                        className="group relative flex items-start gap-2.5 p-1"
                       >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-3 w-3"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
+                        <div className={`h-1.5 w-1.5 rounded-full mt-1.5 flex-shrink-0 shadow-sm ${mem.type === 'semantic' ? 'bg-indigo-500' : 'bg-violet-400'}`} />
+                        <p className="text-[11px] text-slate-600 flex-1 opacity-90 leading-snug">
+                          {mem.content}
+                        </p>
+                        <button
+                          onClick={() => onRemoveMemory(mem.id)}
+                          className="opacity-0 group-hover:opacity-100 absolute -right-2 -top-2 bg-white border border-slate-100 rounded-full p-0.5 text-slate-300 hover:text-rose-500 shadow-sm transition-opacity"
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M6 18L18 6M6 6l12 12"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-                  ))
-                ) : (
-                  <p className="text-[11px] text-slate-400 italic text-center py-2">
-                    Chưa có ký ức nào...
-                  </p>
-                )}
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-3 w-3"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M6 18L18 6M6 6l12 12"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                    ))
+                  ) : (
+                    <p className="text-[11px] text-slate-400 italic text-center py-2">
+                      Chưa có ký ức nào...
+                    </p>
+                  );
+                })()}
               </div>
             </section>
 

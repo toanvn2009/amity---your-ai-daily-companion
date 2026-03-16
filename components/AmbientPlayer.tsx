@@ -6,27 +6,28 @@ const TRACKS = [
     id: 1,
     name: "Lofi Study",
     emoji: "☕",
-    url: "https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3",
+    url: "https://p.scdn.co/mp3-preview/3807d995c52c0f64f4340d85edfb563fa1d4e78d?cid=null", // Demo Lofi
   },
   {
     id: 2,
     name: "Piano Rain",
     emoji: "🎹",
-    url: "https://cdn.pixabay.com/audio/2022/03/10/audio_c8c8a73467.mp3",
+    url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", // Demo Piano
   },
   {
     id: 3,
     name: "Soft Morning",
     emoji: "🌅",
-    url: "https://cdn.pixabay.com/audio/2022/01/18/audio_d0a13f69d2.mp3",
+    url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
   },
   {
     id: 4,
     name: "Night Reflection",
     emoji: "🌙",
-    url: "https://cdn.pixabay.com/audio/2022/02/10/audio_fc06b72a6a.mp3",
+    url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
   },
 ];
+
 
 const AmbientPlayer: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);

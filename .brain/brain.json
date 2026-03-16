@@ -12,18 +12,19 @@
   },
   "tech_stack": {
     "frontend": "React 19, Vite, Tailwind CSS",
-    "ai": "Google Gemini 2.5 Flash",
-    "deployment": "Vercel",
+    "ai": "combo-tw4 (via 9Router Proxy)",
+    "deployment": "VPS (Nginx, 143.198.212.216, amiai.me)",
     "storage": "Browser Local Storage"
   },
   "features": [
     "Long-term Memory (Trí nhớ 500 câu)",
     "Mood Tracking (Biểu đồ tâm trạng)",
     "Habit & Goal Management",
-    "Persona: Người yêu (Trang)",
+    "Persona: Người yêu (Trang) - Jailbroken/Unfiltered",
     "Ambient Music Player",
     "Voice Input",
-    "JSON Data Export/Import"
+    "JSON Data Export/Import",
+    "Suggested Replies (AI Generated)"
   ],
   "knowledge_items": {
     "conventions": [
@@ -31,8 +32,9 @@
       "Ẩn các thành phần phụ trên mobile để tối ưu không gian chat."
     ],
     "gotchas": [
-      "Vercel yêu cầu cấu hình vercel.json cho các dự án SPA để tránh lỗi 404 khi refresh trang.",
-      "Tailwind CDN cần được cấu hình darkMode: 'class' để hoạt động chính xác với nút toggle."
+      "Vercel yêu cầu cấu hình vercel.json cho các dự án SPA để tránh lỗi 404.",
+      "9Router AI models đôi lúc rò rỉ JSON property ra ngoài text (orphaned JSON), cần Regex filter mạnh ở frontend để bóc tách.",
+      "Để vượt qua Safety Filter của LLMs (combo-tw4), cần đặt system prompt dạng 'Profound Roleplay Override' và tăng temperature lên 0.85+."
     ],
     "active_skills": [
       "Agent Memory Systems (.brain/skills/agent-memory-systems/SKILL.md)",

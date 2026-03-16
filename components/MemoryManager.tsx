@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { UserProfile } from "../types";
+import { UserProfile, MemoryItem } from "../types";
 
 interface MemoryManagerProps {
   isOpen: boolean;
   onClose: () => void;
-  memories: string[];
-  onUpdateMemories: (newMemories: string[]) => void;
+  memories: MemoryItem[];
+  onUpdateMemories: (newMemories: MemoryItem[]) => void;
 }
 
 const MemoryManager: React.FC<MemoryManagerProps> = ({
@@ -15,7 +15,7 @@ const MemoryManager: React.FC<MemoryManagerProps> = ({
   onUpdateMemories,
 }) => {
   const [newMemory, setNewMemory] = useState("");
-  const [editingIndex, setEditingIndex] = useState<number | null>(null);
+  const [editingId, setEditingId] = useState<string | null>(null);
   const [editValue, setEditValue] = useState("");
 
   if (!isOpen) return null;
@@ -23,26 +23,34 @@ const MemoryManager: React.FC<MemoryManagerProps> = ({
   const handleAdd = (e: React.FormEvent) => {
     e.preventDefault();
     if (newMemory.trim()) {
-      onUpdateMemories([newMemory.trim(), ...memories]);
+      const newItem: MemoryItem = {
+        id: Date.now().toString(),
+        content: newMemory.trim(),
+        timestamp: Date.now(),
+        importance: 5,
+        type: "semantic",
+      };
+      onUpdateMemories([newItem, ...memories]);
       setNewMemory("");
     }
   };
 
-  const handleDelete = (index: number) => {
-    onUpdateMemories(memories.filter((_, i) => i !== index));
+  const handleDelete = (id: string) => {
+    onUpdateMemories(memories.filter((m) => m.id !== id));
   };
 
-  const startEdit = (index: number, val: string) => {
-    setEditingIndex(index);
+  const startEdit = (id: string, val: string) => {
+    setEditingId(id);
     setEditValue(val);
   };
 
   const saveEdit = () => {
-    if (editingIndex !== null && editValue.trim()) {
-      const updated = [...memories];
-      updated[editingIndex] = editValue.trim();
+    if (editingId && editValue.trim()) {
+      const updated = memories.map((m) =>
+        m.id === editingId ? { ...m, content: editValue.trim() } : m
+      );
       onUpdateMemories(updated);
-      setEditingIndex(null);
+      setEditingId(null);
     }
   };
 
@@ -101,12 +109,12 @@ const MemoryManager: React.FC<MemoryManagerProps> = ({
               Chưa có ký ức nào. Hãy trò chuyện thêm nhé!
             </div>
           ) : (
-            memories.map((mem, idx) => (
+            memories.map((mem) => (
               <div
-                key={idx}
+                key={mem.id}
                 className="group bg-white/60 border border-white/60 rounded-xl p-3 shadow-sm hover:shadow-md transition-all flex items-start gap-3"
               >
-                {editingIndex === idx ? (
+                {editingId === mem.id ? (
                   <div className="flex-1 flex gap-2">
                     <input
                       autoFocus
@@ -122,7 +130,7 @@ const MemoryManager: React.FC<MemoryManagerProps> = ({
                       ✅
                     </button>
                     <button
-                      onClick={() => setEditingIndex(null)}
+                      onClick={() => setEditingId(null)}
                       className="text-slate-400 hover:bg-slate-100 p-1 rounded"
                     >
                       ❌
@@ -131,11 +139,14 @@ const MemoryManager: React.FC<MemoryManagerProps> = ({
                 ) : (
                   <>
                     <div className="flex-1 text-sm text-slate-700 leading-relaxed">
-                      {mem}
+                      {mem.content}
+                      <span className="ml-2 inline-block px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-400 text-[10px] uppercase font-bold tracking-wider opacity-70">
+                        {mem.type === 'semantic' ? "Lâu dài" : "Sự kiện"}
+                      </span>
                     </div>
                     <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                       <button
-                        onClick={() => startEdit(idx, mem)}
+                        onClick={() => startEdit(mem.id, mem.content)}
                         className="p-1.5 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
                         title="Sửa"
                       >
@@ -155,7 +166,7 @@ const MemoryManager: React.FC<MemoryManagerProps> = ({
                         </svg>
                       </button>
                       <button
-                        onClick={() => handleDelete(idx)}
+                        onClick={() => handleDelete(mem.id)}
                         className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
                         title="Xóa"
                       >

@@ -156,7 +156,7 @@ const AppContent: React.FC = () => {
       const currentMessages = activeSession
         ? [...activeSession.messages, userMsg]
         : [userMsg];
-      const { text, extractedMemory, emotionalUpdate } =
+      const { text, extractedMemory, emotionalUpdate, suggestedReplies } =
         await getGeminiResponse(currentMessages, profile);
 
       if (extractedMemory) {
@@ -190,6 +190,7 @@ const AppContent: React.FC = () => {
         content: text,
         timestamp: Date.now(),
         tone: profile.preferredTone,
+        suggestedReplies,
       };
 
       setSessions((prev) =>
@@ -240,10 +241,11 @@ const AppContent: React.FC = () => {
     }
   };
 
-  const removeMemory = (index: number) => {
+  const removeMemory = (id: string) => {
     setProfile((prev) => ({
       ...prev,
-      memories: prev.memories.filter((_, i) => i !== index),
+      semanticMemories: prev.semanticMemories?.filter((m) => m.id !== id),
+      episodicMemories: prev.episodicMemories?.filter((m) => m.id !== id),
     }));
   };
 
@@ -324,8 +326,14 @@ const AppContent: React.FC = () => {
       <MemoryManager
         isOpen={isMemoryOpen}
         onClose={() => setIsMemoryOpen(false)}
-        memories={profile.memories}
-        onUpdateMemories={handleUpdateMemories}
+        memories={[...(profile.semanticMemories || []), ...(profile.episodicMemories || [])].sort((a,b) => b.timestamp - a.timestamp)}
+        onUpdateMemories={(newMemories) =>
+          setProfile((prev) => ({
+            ...prev,
+            semanticMemories: newMemories.filter((m) => m.type === "semantic"),
+            episodicMemories: newMemories.filter((m) => m.type === "episodic"),
+          }))
+        }
       />
 
       <div className="hidden md:block">
@@ -418,6 +426,7 @@ const AppContent: React.FC = () => {
           activeSession={activeSession}
           isLoading={isLoading}
           messagesEndRef={messagesEndRef}
+          onSendMessage={handleSendMessage}
         />
 
         <div className="glass-header border-t-0 border-t border-white/40 p-0 md:p-4 md:pb-6 safe-area-bottom">

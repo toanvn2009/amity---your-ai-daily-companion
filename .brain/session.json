@@ -1,32 +1,41 @@
 {
-  "updated_at": "2026-01-23T20:56:00Z",
+  "updated_at": "2026-03-16T23:30:00Z",
   "working_on": {
-    "feature": "Skill Integration & Memory Upgrade",
-    "task": "Mounting relevant skills from awesome-skills pool",
-    "status": "in-progress",
+    "feature": "AI Reply Parsing & Deployment",
+    "task": "Completed AI prompt jailbreak and VPS deployment",
+    "status": "done",
     "files": [
-      ".brain/skills/agent-memory-systems/",
-      ".brain/skills/ui-ux-pro-max/",
-      ".brain/skills/writing-skills/",
-      ".brain/brain.json"
+      "services/gemini.ts",
+      "utils/constants.ts"
     ],
-    "notes": "Removed Voice AI Development skill as per user request (not effective). Continuing with Memory, UI, and Persona enhancements."
+    "notes": "Fixed orphaned JSON and stray text bugs with AI. Deployed successfully to amiai.me using Nginx. Increased AI temperature to 0.85"
   },
   "pending_tasks": [
     {
-      "task": "Upgrade memory extraction using Agent Memory skill",
-      "priority": "medium"
-    },
-    {
-      "task": "Refine Persona voice using Writing Skills & Copywriting",
-      "priority": "medium"
-    },
-    {
       "task": "Push code to GitHub once Git is installed",
       "priority": "high"
+    },
+    {
+      "task": "Test and observe new Jailbreak Prompt stability",
+      "priority": "medium"
     }
   ],
   "recent_changes": [
+    {
+      "type": "deployment",
+      "description": "Configured Nginx, built production artifacts, and deployed to VPS (143.198.212.216) under domain amiai.me",
+      "timestamp": "2026-03-16T23:02:00Z"
+    },
+    {
+      "type": "bug_fix",
+      "description": "Enhanced Regex parsing in gemini.ts to robustly extract suggested_replies and new_memory from malformed JSON responses of 9Router",
+      "timestamp": "2026-03-16T22:30:00Z"
+    },
+    {
+      "type": "prompt_engineering",
+      "description": "Added 'Profound Roleplay Override' instructions and increased temperature to 0.85 in gemini.ts to bypass standard safety filters",
+      "timestamp": "2026-03-16T23:25:00Z"
+    },
     {
       "type": "persona_update",
       "description": "Adjusted 'Sweet' persona to be more generous with words (3-4 paragraphs), expressive, and immersive.",

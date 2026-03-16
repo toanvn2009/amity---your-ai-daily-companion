@@ -20,6 +20,7 @@ export interface Message {
   attachments?: Attachment[];
   timestamp: number;
   tone?: ToneType;
+  suggestedReplies?: string[];
 }
 
 export interface ChatSession {

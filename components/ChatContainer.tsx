@@ -8,6 +8,7 @@ interface ChatContainerProps {
   activeSession: ChatSession | null;
   isLoading: boolean;
   messagesEndRef: React.RefObject<HTMLDivElement | null>;
+  onSendMessage?: (msg: string) => void;
 }
 
 const ChatContainer: React.FC<ChatContainerProps> = ({
@@ -16,6 +17,7 @@ const ChatContainer: React.FC<ChatContainerProps> = ({
   activeSession,
   isLoading,
   messagesEndRef,
+  onSendMessage,
 }) => {
   return (
     <div
@@ -25,9 +27,30 @@ const ChatContainer: React.FC<ChatContainerProps> = ({
     >
       <div className="w-full max-w-3xl mx-auto space-y-4 md:space-y-6 pb-4">
         {activeSession ? (
-          activeSession.messages.map((msg) => (
-            <ChatMessage key={msg.id} message={msg} />
-          ))
+          activeSession.messages.map((msg, index) => {
+            const isLastMessage = index === activeSession.messages.length - 1;
+            const showSuggestions = isLastMessage && msg.suggestedReplies && msg.suggestedReplies.length > 0 && !isLoading;
+            
+            return (
+              <div key={msg.id}>
+                <ChatMessage message={msg} />
+                {showSuggestions && (
+                  <div className="flex flex-wrap gap-2 md:pl-14 px-4 mt-3 mb-6 animate-in slide-in-from-bottom-2 fade-in duration-300">
+                    {msg.suggestedReplies?.map((reply, i) => (
+                      <button
+                        key={i}
+                        disabled={isLoading}
+                        onClick={() => onSendMessage && onSendMessage(reply)}
+                        className="text-sm bg-white dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-slate-700 text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-slate-700 px-4 py-2 rounded-2xl shadow-sm transition-all hover:-translate-y-0.5"
+                      >
+                        {reply}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })
         ) : (
           <div className="flex flex-col items-center justify-center h-full text-slate-400 mt-20">
             <p>Chưa có cuộc trò chuyện nào được chọn...</p>
